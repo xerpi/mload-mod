@@ -1,6 +1,8 @@
-#d2x cIOS
+#d2xl cIOS
 
-[![d2x-cios logo](http://img403.imageshack.us/img403/585/d2xcioslogo.png)](https://github.com/davebaol/d2x-cios/)
+This is a fork of davebaol's d2x-cIOS for Wii and WiiU, which I (Leseratte) named "d2xl-cIOS". The main goal was to make the cIOS compatible
+with the Wii Mini (which I accomplished using a hex editor). Now that I finally fixed the compiler issues and can properly compile the source code
+as of February 15th, 2020; I am planning to add more features to the cIOS as well. 
 
 
 #### DISCLAIMER
