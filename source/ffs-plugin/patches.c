@@ -143,6 +143,7 @@ s32 Patch_FfsModule(void)
 
 	/** 11/24/08 15:36:10 **/
 	case 0x492AC9EA: {	// IOS: 56v5661, 57v5918, 58v6175, 60v6174, 61v5661, 70v6687, 80v6943
+						// Mini IOS: 56v31519
 		static ffsAddrInfo aInfo = {
 			0x200061B8,	// table
 			0x2000618A,	// reentry
@@ -199,8 +200,10 @@ s32 Patch_IopModule(void)
 
 	/** 11/24/08 15:39:12 **/
 	/** 03/03/10 10:43:18 **/
+	/** 09/27/11 18:50:17 **/
 	case 0x492ACAA0:        // IOS: 60v6174, 70v6687 
 	case 0x4B8E3D46:        // IOS: 56v5661, 57v5918, 58v6175, 61v5661, 80v6943 
+	case 0x4E821AE9:        // Mini IOS: 56v31519
 		__Patch_IopModule(0xFFFF3020);
 		break;
 

@@ -103,7 +103,7 @@ s32 Patch_DipModule(void)
 	/** 11/24/08 15:39:09 **/
 	case 0x492ACA9D:       // IOS: 60v6174
 	/** 06/03/09 07:49:09 **/
-	case 0x4A262AF5:       // IOS: 56v5661, 57v5918, 58v6175, 61v5661, 70v6687, 80v6943
+	case 0x4A262AF5:       // IOS: 56v5661, 57v5918, 58v6175, 61v5661, 70v6687, 80v6943; Mini IOS: 56v31519
 		/* Unencrypted read limit */
 		DCWrite32(0x202066E4, 0x7ED40000);
 
@@ -174,7 +174,7 @@ s32 Patch_EsModule(void)
 	}
 
 	/** 03/03/10 10:40:14 **/
-	case 0x4B8E90EE: {	// IOS: 56v5661, 57v5918, 58v6175, 61v5661, 80v6943
+	case 0x4B8E90EE: {	// IOS: 56v5661, 57v5918, 58v6175, 61v5661, 80v6943, Mini IOS: 56v31519
 		static esAddrInfo addrInfo = {
 			0x13A7547A,	// signatureCheck1  (added in d2x v8 r42)
 			0x13A75626,	// signatureCheck2
@@ -291,7 +291,7 @@ s32 Patch_FfsModule(void)
 		break;
 
 	/** 11/24/08 15:36:10 **/
-	case 0x492AC9EA:           //  IOS: 56v5661, ....
+	case 0x492AC9EA:           //  IOS: 56v5661, ...., Mini IOS: 56v31519
 	/** 04/02/12 14:00:54 **/
 	case 0x4F79B116:           // vIOS: 56v5918, 57v6175, 58v6432
 		/* Permissions check */
@@ -316,12 +316,14 @@ s32 Patch_IopModule(void)
 	/** 03/03/10 10:43:18 **/
 	/** 03/01/10 03:28:58 **/
 	/** 03/01/10 03:13:17 **/
+	/** 09/27/11 18:50:17 **/
+	/** 04/02/12 14:03:56 **/
 	case 0x48776F75:        // IOS: 37v5662, 53v5662, 55v5662
 	case 0x492ACAA0:        // IOS: 60v6174, 70v6687
 	case 0x49511FC0:        // IOS: ???
 	case 0x4B8E3D46:        // IOS: 56v5661, 57v5918, 58v6175, 61v5661, 80v6943 
 	case 0x4B8B30CD:        // IOS: 36v3607, 38v4123
-	/** 04/02/12 14:03:56 **/
+	case 0x4e821ae9:        // Mini IOS 56v31519 
 	case 0x4F79B1CC:        // vIOS: 56v5918, 57v6175, 58v6432
 		/* SWI handler */
 		DCWrite32(0xFFFF0028, (u32)SwiVector);

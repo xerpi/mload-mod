@@ -100,6 +100,7 @@ s32 Patch_EsModule(void)
 
 	/** 03/03/10 10:40:14 **/
 	case 0x4B8E90EE: {	// IOS: 56v5661, 57v5918, 58v6175, 61v5661, 80v6943
+						// Mini IOS: 56v31519
 		static esAddrInfo addrInfo = {
 			0x20100048,	// open
 			0x201000CC,	// ioctlv
