@@ -1,0 +1,6 @@
+name: 'Make cIOS'
+description: 'Compiles the cIOS'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

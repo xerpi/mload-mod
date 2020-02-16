@@ -102,7 +102,7 @@ int main(int argc, char* argv[])
 unsigned long strip=0;
 
 	fprintf(stdout, "stripios - IOS ELF stripper - by neimod\n");
-    fprintf(stdout, "modded and fixed by Leeseratte\n");
+    fprintf(stdout, "modded and fixed by Leseratte\n");
 	if (argc < 3 || argc==4)
 	{
 		fprintf(stderr,"Usage: %s <in.elf> <out.elf> [strip addr]\n", argv[0]);

@@ -2,6 +2,21 @@
 | CHANGELOG |
 +-----------+
 
+[ d2xl v1 beta3 ] (NOT RELEASED YET)
+
+- First version compiled from source
+- Works with Wii, vWii and Wii Mini 
+
+[ d2xl v1 beta1 / beta2 ]
+
+- First versions named "d2xl".
+- Support for NTSC added
+- Still created with a hex editor ...
+
+[ d2x v10 b52mini1 ]
+
+- First Wii Mini cIOS. Created in September 2019 by Leseratte, by using a hex 
+  editor to make it compatible. 
 
 [ d2x v10 ]
 
