@@ -1,7 +1,8 @@
 /*   
-	IOS ELF stripper, converts traditional ELF files into the format IOS wants.
+    IOS ELF stripper, converts traditional ELF files into the format IOS wants.
     Copyright (C) 2008 neimod.
-	Copyright (C) 2009-2010 Hermes
+    Copyright (C) 2009-2010 Hermes
+    Copyright (C) 2020 Leseratte.
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,16 +28,16 @@
 
 typedef struct 
 {
-        unsigned int		ident0;
-		unsigned int		ident1;
-		unsigned int		ident2;
-		unsigned int		ident3;
-        unsigned int		machinetype;
-        unsigned int		version;
-        unsigned int		entry;
+        unsigned int        ident0;
+	unsigned int        ident1;
+	unsigned int        ident2;
+	unsigned int        ident3;
+        unsigned int        machinetype;
+        unsigned int        version;
+        unsigned int        entry;
         unsigned int        phoff;
         unsigned int        shoff;
-        unsigned int		flags;
+        unsigned int        flags;
         unsigned short      ehsize;
         unsigned short      phentsize;
         unsigned short      phnum;
@@ -102,7 +103,7 @@ int main(int argc, char* argv[])
 unsigned long strip=0;
 
 	fprintf(stdout, "stripios - IOS ELF stripper - by neimod\n");
-    fprintf(stdout, "modded and fixed by Leseratte\n");
+	fprintf(stdout, "modded and fixed by Leseratte\n");
 	if (argc < 3 || argc==4)
 	{
 		fprintf(stderr,"Usage: %s <in.elf> <out.elf> [strip addr]\n", argv[0]);
