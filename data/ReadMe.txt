@@ -1,7 +1,7 @@
 /*
- * cIOS d2x v${MAJOR_VER} ${MINOR_VER} 
+ * cIOS d2xl v${MAJOR_VER} ${MINOR_VER} 
  *
- * by davebaol
+ * by Leseratte, based on cIOS d2x by davebaol
  * 
  */  
 
@@ -18,20 +18,18 @@
   This is a Custom IOS, an IOS modified to add some new features
   not available in the official IOS.
 
-  This IOS has been made to be used ONLY with homebrew software.
-
-  The d2x cIOS is an enhanced version of the cIOSX rev21 by Waninkoko. 
-  To see what's new read the file Changelog.txt or visit the d2x google code
-  project: http://code.google.com/p/d2x-cios
+  The d2xl cIOS is an enhanced version of the d2x cIOS, which is based on 
+  the cIOSX rev21 by Waninkoko. To see what's new read the file 
+  Changelog.txt or visit the d2xl github project: https://github.com/Leseratte10/d2xl-cios
 
 
 [ HOW TO INSTALL IT ]
 
-  You can install d2x cios through ModMii or d2x-cios-installer.
+  You can install d2xl cios through ModMii or d2x-cios-installer.
   
   ModMii:
 
-  - If you're going to install a d2x vWii edition don't use ModMii. In this
+  - If you're going to install a d2xl vWii edition don't use ModMii. In this
     case use the d2x-cios-installer (see below).
   - Download and install ModMii v6.2.3 or higher on your PC. Download link:
     http://gbatemp.net/topic/207126-modmii-for-windows
@@ -47,7 +45,7 @@
   - Download the latest d2x-cios-installer from its google code page:
     http://code.google.com/p/d2x-cios-installer/downloads/list
   - Extract it into the apps folder of your sd card or usb device
-  - Extract d2x-v${MAJOR_VER}-${MINOR_VER}.zip on your sd card or usb device
+  - Extract d2xl-v${MAJOR_VER}-${MINOR_VER}.zip on your sd card or usb device
     into the folder /apps/d2x-cios-installer.
     NOTE: This will overwrite the file /apps/d2x-cios-installer/ciosmaps.xml
     possibly present in that folder. You might want to rename it before
