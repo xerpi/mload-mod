@@ -149,7 +149,7 @@ if [ ! -z "${DIST}" ] && [ "${DIST}" != "dist" ]; then
 
 fi
 
-export D2XBUILD=d2x-v${MAJOR_VERSION}-${MINOR_VERSION}
+export D2XBUILD=d2xl-v${MAJOR_VERSION}-${MINOR_VERSION}
 
 echo -----------------------------
 echo Building ${D2XBUILD}

@@ -39,7 +39,7 @@ goto :usage
 
 
 :valid_args
-set "d2x_build=d2x-v%major_ver%-%minor_ver%"
+set "d2x_build=d2xl-v%major_ver%-%minor_ver%"
 
 echo -----------------------------
 echo Building %d2x_build%
