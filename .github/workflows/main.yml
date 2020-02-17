@@ -1,6 +1,6 @@
 name: CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -9,8 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Test
-      uses: Leseratte10/d2xl-cios@master
+    - name: Compile d2xl-cIOS
+      uses: ./.github/actions
       id: asdf
     - uses: actions/upload-artifact@v1
       with: 
