@@ -223,7 +223,7 @@ int main(void)
 	s32 ret;
 
 	/* Print info */
-	svc_write("$IOSVersion: USBS: " __DATE__ " " __TIME__ " 64M$\n");
+	svc_write("$IOSVersion: USBS:  " __DATE__ " " __TIME__ " 64M$\n");
 
 	/* Initialize module */
 	ret = __USB_Initialize();

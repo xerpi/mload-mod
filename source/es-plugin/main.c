@@ -36,7 +36,7 @@ int main(void)
 	s32 fd;
 
 	/* Print info */
-	svc_write("$IOSVersion: ESP: " __DATE__ " " __TIME__ " 64M$\n");
+	svc_write("$IOSVersion: ESP:   " __DATE__ " " __TIME__ " 64M$\n");
 
 	/* Load config */
 	Config_Load(&config, sizeof(config));

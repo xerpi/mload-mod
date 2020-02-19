@@ -396,7 +396,7 @@ int main(void)
 	s32 ret;
 
 	/* Print info */
-	svc_write("$IOSVersion: FAT: " __DATE__ " " __TIME__ " 64M$\n");
+	svc_write("$IOSVersion: FAT:   " __DATE__ " " __TIME__ " 64M$\n");
 
 	/* Create blinker thread */
 	Led_CreateBlinkThread();
