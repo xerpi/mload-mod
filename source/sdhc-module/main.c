@@ -5,6 +5,7 @@
 	Copyright (C) 2009 WiiGator.
 	Copyright (C) 2009 Waninkoko.
 	Copyright (C) 2011 davebaol.
+	Copyright (C) 2020 Leseratte.
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
