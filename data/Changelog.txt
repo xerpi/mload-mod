@@ -6,6 +6,7 @@
 
 - First version compiled from source
 - Works with Wii, vWii and Wii Mini 
+- Compiling the same code will always result in the same binary (reproducible builds)
 
 [ d2xl v1 beta1 / beta2 ]
 
