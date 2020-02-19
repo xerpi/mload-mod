@@ -36,7 +36,7 @@ int main(void)
 	};
 
 	/* Print info */
-	svc_write("$IOSVersion: FFSP:  " __DATE__ " " __TIME__ " 64M$\n");
+	svc_write("$IOSVersion: FFSP:  " __DATE__ " " __TIME__ " 64M " __D2XL_VER__ " $\n");
 
 	/* Initialize IOP */
 	IOP_Init();

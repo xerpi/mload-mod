@@ -38,7 +38,7 @@ int main(void)
 	s32 ret;
 
 	/* Print info */
-	svc_write("$IOSVersion: EHCI:  " __DATE__ " " __TIME__ " 64M$\n");
+	svc_write("$IOSVersion: EHCI:  " __DATE__ " " __TIME__ " 64M " __D2XL_VER__ " $\n");
 
 	/* Initialize memory heap */
 	ret = Mem_Init(heapspace, sizeof(heapspace));

@@ -163,7 +163,7 @@ int main(void)
 	s32 ret;
 
 	/* Print info */
-	svc_write("$IOSVersion: SDHC:  " __DATE__ " " __TIME__ " 64M$\n");
+	svc_write("$IOSVersion: SDHC:  " __DATE__ " " __TIME__ " 64M " __D2XL_VER__ " $\n");
 
 	/* Initialize module */
 	ret = __SDHC_Initialize(&queuehandle);

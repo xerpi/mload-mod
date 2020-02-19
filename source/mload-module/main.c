@@ -280,7 +280,7 @@ int main(void)
 	exe_mem[0] = 0;
 
 	/* Print info */
-	svc_write("$IOSVersion: MLOAD: " __DATE__ " " __TIME__ " 64M$\n");
+	svc_write("$IOSVersion: MLOAD: " __DATE__ " " __TIME__ " 64M " __D2XL_VER__ " $\n");
 
 	/* Call __MLoad_System through software interrupt 9 */
 	ret = os_software_IRQ(9);

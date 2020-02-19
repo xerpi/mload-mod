@@ -32,7 +32,7 @@ int main(void)
 	static patcher patchers[] = {{Patch_DipModule, 0}};
 
 	/* Print info */
-	svc_write("$IOSVersion: DIPP:  " __DATE__ " " __TIME__ " 64M$\n");
+	svc_write("$IOSVersion: DIPP:  " __DATE__ " " __TIME__ " 64M " __D2XL_VER__ " $\n");
 
 	/* Initialize plugin */
 	IOS_InitSystem(patchers, sizeof(patchers));
