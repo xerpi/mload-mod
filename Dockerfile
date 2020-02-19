@@ -5,7 +5,7 @@ MAINTAINER Leseratte
 # Update and install a bunch of crap: 
 RUN apt-get update -y --force-yes && \
 apt-get install -y --force-yes \
-make gawk wget bzip2 unzip dos2unix libmpc-dev libelf-dev gcc g++ git libfl2 libfl-dev
+make gawk wget bzip2 unzip libmpc-dev libelf-dev gcc g++ git libfl2 libfl-dev
 
 # Download the pre-built devkitARM r32 
 # see https://github.com/Leseratte10/compile-devkitARM-r32 for sources
