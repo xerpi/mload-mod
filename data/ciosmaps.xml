@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ciosmaps ciosgroupscount="1">
-	<ciosgroup name="d2xl-v${MAJOR_VER}-${MINOR_VER}" version="${IOS_REV}" basescount="12">
+	<ciosgroup name="d2xl-v${MAJOR_VER}-${MINOR_VER}" version="${IOS_REV}" basescount="15">
 		
-		<!-- WII IOS START --->		
+		<!-- WII IOS START -->		
 			
 			<base ios="37" version="5662" contentscount="22" modulescount="7">
 				<content id="0x1f" patchscount="7">
@@ -517,7 +517,7 @@
 				<content id="0x14" module="ES" tmdmoduleid="-1"/>
 				<content id="0x15" module="FFSP" tmdmoduleid="-1"/>
 			</base>
-		<!-- WII IOS END --->
+		<!-- WII IOS END -->
 		
 		
 		
@@ -678,7 +678,7 @@
 		
 		<!-- vWii IOS END -->
 		
-		<!-- WII MINI IOS START --->
+		<!-- WII MINI IOS START -->
 		
 			<base ios="57" version="31776" contentscount="25" modulescount="7"> <!-- PAL version? -->
 				<content id="0x13" patchscount="7">		<!-- idx 0 -->
