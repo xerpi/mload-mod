@@ -113,7 +113,7 @@ s32 Patch_DipModule(void)
 	/** 11/24/08 15:39:09 **/
 	case 0x492ACA9D:        // IOS: 60v6174
 	/** 06/03/09 07:49:09 **/
-	case 0x4A262AF5: {       // IOS: 56v5661, 57v5918, 58v6175, 61v5661, 70v6687, 80v6943
+	case 0x4A262AF5: {       // IOS: 56v5661, 57v5918, 58v6175, 59v9249, 61v5661, 70v6687, 80v6943
 							 // Mini IOS 56v31519
 		static dipAddrInfo aInfo = {
 			0x20200074,	// aInit
