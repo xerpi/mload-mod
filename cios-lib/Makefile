@@ -2,7 +2,7 @@
 DEVKITARM ?=	/opt/devkitARM
 
 # Prefix
-PREFIX	=	$(DEVKITARM)/bin/arm-eabi-
+PREFIX	=	$(DEVKITARM)/bin/arm-none-eabi-
 
 # Executables
 CC	=	$(PREFIX)gcc
@@ -52,6 +52,8 @@ OBJS2	=	libwbfs/libwbfs.o	\
 		libwbfs/rijndael.o	\
 		libwbfs/wiidisc.o
 
+# Dependency files
+DEPS	= $(OBJS:.o=.d) $(OBJS2:.o=.d)
 
 $(TARGET).a: $(OBJS) $(OBJS2)
 	@echo -e " AR\t$@"
@@ -59,16 +61,20 @@ $(TARGET).a: $(OBJS) $(OBJS2)
 
 %.o: %.s
 	@echo -e " CC\t$@"
-	@$(CC) $(CFLAGS) -D_LANGUAGE_ASSEMBLY -c -x assembler-with-cpp -o $@ $<
+	@$(CC) $(CFLAGS) -MMD -MP -D_LANGUAGE_ASSEMBLY -c -x assembler-with-cpp -o $@ $<
 
 libwbfs/%.o: libwbfs/%.c
 	@echo -e " CC\t$@"
-	@$(CC) $(CFLAGS) $(CFLAGS2) -c -o $@ $<
+	@$(CC) $(CFLAGS) $(CFLAGS2) -MMD -MP -c -o $@ $<
 
 %.o: %.c
 	@echo -e " CC\t$@"
-	@$(CC) $(CFLAGS) -c -o $@ $<
+	@$(CC) $(CFLAGS) -MMD -MP -c -o $@ $<
+
+.PHONY: clean
 
 clean:
 	@echo -e "Cleaning..."
-	@rm -f $(OBJS) $(OBJS2) $(TARGET).a
+	@rm -f $(OBJS) $(DEPS) $(OBJS2) $(TARGET).a
+
+-include $(DEPS)
