@@ -16,7 +16,7 @@ __mem_start_phys__		= 0x13700000;
 
 
 SECTIONS {
-	.exe_mem : AT (__mem_start_phys__) {
+	.exe_mem (NOLOAD) : AT (__mem_start_phys__) {
 		 *(.exe_mem)
 	} > mem
 
@@ -29,12 +29,12 @@ SECTIONS {
 		. = ALIGN(4);
 	} > exe
 
-	.text : { 
-		*(.text*) 
-		*(.gnu.warning) 
-		*(.gnu.linkonce.t.*) 
-		*(.init) 
-		*(.glue_7) 
+	.text : {
+		*(.text*)
+		*(.gnu.warning)
+		*(.gnu.linkonce.t.*)
+		*(.init)
+		*(.glue_7)
 		*(.glue_7t)
 		. = ALIGN(4);
 	} > exe
@@ -46,11 +46,11 @@ SECTIONS {
 		. = ALIGN(4);
 	} > ram
 
-	.rodata : { 
+	.rodata : {
 		*(.rodata)
 		*all.rodata*(*)
 		*(.roda)
-		*(.rodata.*) 
+		*(.rodata.*)
 		*(.gnu.linkonce.r.*)
 		. = ALIGN(4);
 	} > ram
