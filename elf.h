@@ -1,4 +1,4 @@
-/*   
+/*
 	Custom IOS Module (MLOAD)
 
 	Copyright (C) 2008 neimod.
@@ -25,8 +25,18 @@
 
 #include "types.h"
 
+/* ELF data */
+typedef struct {
+	void *start;
+	void *stack;
+	void *arg;
+	int prio;
+	int size_stack;
+} elfdata;
+
 /* Prototypes */
 s32 Elf_Load(void *data);
+s32 Elf_LoadFromSD(const char *path, elfdata *elf);
 s32 Elf_Run(void);
 s32 Elf_RunThread(void *start, void *arg, void *stack, u32 stacksize, u32 priority);
 s32 Elf_StopThread(s32 tid);

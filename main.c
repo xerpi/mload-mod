@@ -1,4 +1,4 @@
-/*   
+/*
 	Custom IOS Module (MLOAD)
 
 	Copyright (C) 2008 neimod.
@@ -28,6 +28,7 @@
 #include "debug.h"
 #include "detect.h"
 #include "elf.h"
+#include "fat.h"
 #include "ios.h"
 #include "ipc.h"
 #include "mem.h"
@@ -44,6 +45,7 @@
 //#define DEBUG_MODE DEBUG_BUFFER
 //#define DEBUG_MODE DEBUG_GECKO
 
+#define MLOAD_TXT_FILE	"mload/mload.txt"
 
 /* Global variables */
 char *moduleName = "MLOAD";
@@ -271,6 +273,57 @@ static s32 __MLoad_Initialize(u32 *queuehandle)
 	return 0;
 }
 
+static s32 __MLoad_LoadModulesFromSD(void)
+{
+	char buf[2048];
+	char path[FAT_MAXPATH];
+	char *line = buf;
+	char *endl;
+	int fd, ret;
+	elfdata elf;
+
+	/* Mount SD card */
+	ret = FAT_Mount(0, 0);
+	if (ret < 0)
+		return ret;
+
+	/* Open mload.txt file */
+	fd = os_open("fat/" MLOAD_TXT_FILE, IOS_OPEN_READ);
+	if (fd < 0)
+		return fd;
+
+	/* Read mload.txt */
+	ret = os_read(fd, buf, sizeof(buf));
+	os_close(fd);
+	if (ret < 0)
+		return ret;
+
+	/* Make sure the buffer is null-terminated */
+	buf[sizeof(buf) - 1] = '\0';
+
+	/* For each line in mload.txt... */
+	while ((endl = strchr(line, '\n'))) {
+		*endl = '\0';
+		/* Skip comments (lines starting with #) */
+		if (line[0] != '#') {
+			/* Get full path to the module to load */
+			path[0] = '\0';
+			strcat(path, "fat/");
+			strcat(path, line);
+
+			/* Load module */
+			ret = Elf_LoadFromSD(path, &elf);
+			if (ret == 0) {
+				/* Create a new thread and start executing the module */
+				Elf_RunThread(elf.start, elf.arg, elf.stack,
+					      elf.size_stack, elf.prio);
+			}
+		}
+		line += strlen(line) + 1;
+	}
+
+	return 0;
+}
 
 int main(void)
 {
@@ -299,6 +352,9 @@ int main(void)
 	ret = __MLoad_Initialize(&queuehandle);
 	if (ret < 0)
 		return ret;
+
+	/* Load modules from the SD card */
+	__MLoad_LoadModulesFromSD();
 
 	/* Main loop */
 	while (1) {
@@ -403,6 +459,6 @@ int main(void)
 		/* Acknowledge message */
 		os_message_queue_ack(message, ret);
 	}
-   
+
 	return 0;
 }

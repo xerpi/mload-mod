@@ -31,6 +31,7 @@ TARGET	=	cios-lib
 
 # Objects
 OBJS	=	direct_syscalls.o	\
+		fat.o			\
 		fat_tools.o		\
 		ios.o			\
 		ipc.o			\
@@ -47,7 +48,7 @@ OBJS	=	direct_syscalls.o	\
 		tools.o			\
 		usbstorage.o		\
 		vsprintf.o
-		
+
 OBJS2	=	libwbfs/libwbfs.o	\
 		libwbfs/rijndael.o	\
 		libwbfs/wiidisc.o
@@ -57,7 +58,7 @@ DEPS	= $(OBJS:.o=.d) $(OBJS2:.o=.d)
 
 $(TARGET).a: $(OBJS) $(OBJS2)
 	@echo -e " AR\t$@"
-	@$(AR) $(ARFLAGS) $@ $(OBJS) $(OBJS2) 
+	@$(AR) $(ARFLAGS) $@ $(OBJS) $(OBJS2)
 
 %.o: %.s
 	@echo -e " CC\t$@"
