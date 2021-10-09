@@ -36,7 +36,7 @@
 /* Prototypes */
 s32 Debug_SetMode(u8 mode);
 #ifndef NO_DEBUG_BUFFER
-s32 Debug_GetBuffer(char *outbuf, u32 len);
+s32 Debug_GetBuffer(char *outbuf, u32 len, bool empty);
 #endif
 
 #endif

@@ -132,7 +132,7 @@ s32 Debug_SetMode(u8 mode)
 }
 
 #ifndef NO_DEBUG_BUFFER
-s32 Debug_GetBuffer(char *outbuf, u32 size)
+s32 Debug_GetBuffer(char *outbuf, u32 size, bool empty)
 {
 	u32 len;
 
@@ -146,6 +146,9 @@ s32 Debug_GetBuffer(char *outbuf, u32 size)
 	/* Copy buffer */
 	memcpy(outbuf, buffer, len);
 	outbuf[len] = 0;
+
+	if (empty)
+		buffer[0] = '\0';
 
 	return len;
 }

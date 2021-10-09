@@ -173,13 +173,28 @@ static s32 __MLoad_Ioctlv(u32 cmd, ioctlv *vector, u32 inlen, u32 iolen)
 		u32   len    = *(u32 *)vector[0].len;
 
 		/* Get debug buffer */
-		ret = Debug_GetBuffer(buffer, len-1);
+		ret = Debug_GetBuffer(buffer, len-1, false);
 #else
 		ret = 0;
 #endif
 
 		break;
 	}
+
+	case MLOAD_GET_LOG_BUFFER_AND_EMPTY: {
+#ifndef NO_DEBUG_BUFFER
+		char *buffer = (char *)vector[0].data;
+		u32   len    = *(u32 *)vector[0].len;
+
+		/* Get debug buffer */
+		ret = Debug_GetBuffer(buffer, len-1, true);
+#else
+		ret = 0;
+#endif
+
+		break;
+	}
+
 
 	case MLOAD_SET_STEALTH_MODE: {
 		u32 mode = *(u32 *)vector[0].data;
