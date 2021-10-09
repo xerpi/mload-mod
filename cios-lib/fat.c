@@ -125,6 +125,27 @@ s32 FAT_Mount(u32 device, u32 partition)
 	return ret;
 }
 
+s32 FAT_Umount(u32 device)
+{
+	s32 fatFd, ret;
+
+	/* Open FAT module */
+	fatFd = os_open("fat", 0);
+	if (fatFd < 0)
+		return fatFd;
+
+	/* Set command */
+	u32 cmd = (device == 0 ? IOCTL_FAT_UMOUNT_SD : IOCTL_FAT_UMOUNT_USB);
+
+	/* Umount device */
+	ret = os_ioctl(fatFd, cmd, NULL, 0, NULL, 0);
+
+	/* Close FAT module */
+	os_close(fatFd);
+
+	return ret;
+}
+
 s32 FAT_GetPartition(u32 device, u32 *partition)
 {
 	fatBuf iobuf ATTRIBUTE_ALIGN(32);
@@ -211,6 +232,9 @@ s32 FAT_ReadDir(const char *dirpath, void *outbuf, u32 *entries)
 	/* Copy data */
 	if (ret >= 0)
 		*entries = iobuf.dir.entries;
+
+	/* Close FAT module */
+	os_close(fatFd);
 
 	return ret;
 }

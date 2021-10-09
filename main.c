@@ -322,6 +322,9 @@ static s32 __MLoad_LoadModulesFromSD(void)
 		line += strlen(line) + 1;
 	}
 
+	/* Umount SD card */
+	FAT_Umount(0);
+
 	return 0;
 }
 
