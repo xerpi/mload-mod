@@ -47,10 +47,15 @@
 
 #define MLOAD_TXT_FILE	"mload/mload.txt"
 
+#define LOAD_MODULES_FROM_SD_MAX_RETRIES	5
+#define LOAD_MODULES_FROM_SD_RETRY_DELAY_US	20000
+
 /* Global variables */
 char *moduleName = "MLOAD";
 s32 offset       = 0;
 u32 stealth_mode = 1;     // Stealth mode is on by default
+static s32 load_modules_sd_retry_timer_id;
+static s32 load_modules_sd_retry_timer_cookie;
 
 
 static s32 __MLoad_Ioctlv(u32 cmd, ioctlv *vector, u32 inlen, u32 iolen)
@@ -288,19 +293,32 @@ static s32 __MLoad_Initialize(u32 *queuehandle)
 	return 0;
 }
 
-static s32 __MLoad_LoadModulesFromSD(void)
+static s32 __MLoad_LoadModulesFromSD(s32 timer_id)
 {
-	char buf[2048];
+	static char buf[2048];
+	static bool success = false;
+	static int retries = 0;
 	char path[FAT_MAXPATH];
 	char *line = buf;
 	char *endl;
 	int fd, ret;
 	elfdata elf;
 
+	/* Check if we already had success loading the modules */
+	if (success || (retries > LOAD_MODULES_FROM_SD_MAX_RETRIES))
+		return 0;
+
+	retries++;
+
 	/* Mount SD card */
 	ret = FAT_Mount(0, 0);
 	if (ret < 0)
 		return ret;
+
+	/* We had success mounting the SD card. Destroy the timer */
+	os_stop_timer(timer_id);
+	os_destroy_timer(timer_id);
+	success = true;
 
 	/* Open mload.txt file */
 	fd = os_open("fat/" MLOAD_TXT_FILE, IOS_OPEN_READ);
@@ -326,12 +344,19 @@ static s32 __MLoad_LoadModulesFromSD(void)
 			strcat(path, "fat/");
 			strcat(path, line);
 
+			svc_write("MLOAD: Loading module from SD: \"");
+			svc_write(path);
+			svc_write("\"...");
+
 			/* Load module */
 			ret = Elf_LoadFromSD(path, &elf);
 			if (ret == 0) {
+				svc_write(" success!\n");
 				/* Create a new thread and start executing the module */
 				Elf_RunThread(elf.start, elf.arg, elf.stack,
 					      elf.size_stack, elf.prio);
+			} else {
+				svc_write(" error!\n");
 			}
 		}
 		line += strlen(line) + 1;
@@ -347,6 +372,7 @@ int main(void)
 {
 	u32 queuehandle;
 	s32 ret;
+	s32 tid;
 
 	/* Avoid GCC optimizations */
 	exe_mem[0] = 0;
@@ -371,8 +397,16 @@ int main(void)
 	if (ret < 0)
 		return ret;
 
-	/* Load modules from the SD card */
-	__MLoad_LoadModulesFromSD();
+	/* Get current thread id */
+	tid = os_get_thread_id();
+
+	/* Add thread rights to access the FAT module */
+	Swi_AddThreadRights(tid, TID_RIGHTS_OPEN_FAT);
+
+	load_modules_sd_retry_timer_id = os_create_timer(LOAD_MODULES_FROM_SD_RETRY_DELAY_US,
+							 LOAD_MODULES_FROM_SD_RETRY_DELAY_US,
+							 queuehandle,
+							 (s32)&load_modules_sd_retry_timer_cookie);
 
 	/* Main loop */
 	while (1) {
@@ -382,6 +416,12 @@ int main(void)
 		ret = os_message_queue_receive(queuehandle, (void *)&message, 0);
 		if (ret)
 			continue;
+
+		/* Try to load modules from the SD card */
+		if ((s32)message == (s32)&load_modules_sd_retry_timer_cookie) {
+			__MLoad_LoadModulesFromSD(load_modules_sd_retry_timer_id);
+			continue;
+		}
 
 		/* Parse command */
 		switch (message->command) {
