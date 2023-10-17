@@ -16,4 +16,6 @@ mload/MYMODULE.app
 
 This `ioctl` is useful for extracting IOS-side logs from the PPC (regular Wii apps) for those who do not have a USB Gecko.
 
+**Note**: By default, this feature is disabled. To enable buffer logging, you should comment out or remove `#define NO_DEBUG_BUFFER` in `include/debug.h`.
+
 Check out [this repository](https://bitbucket.org/xerpi/mload_test) for a sample homebrew application that uses this `ioctl`.
