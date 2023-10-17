@@ -29,7 +29,7 @@ endif
 
 # Flags
 ARCH	=	-mcpu=arm926ej-s -mthumb -mthumb-interwork -mbig-endian
-CFLAGS	=	$(ARCH) -iquote ./ -iquote cios-lib -fomit-frame-pointer -Os -Wall -D__TIME__=\"$(BUILD_TIME)\" -D__DATE__=\"$(BUILD_DATE)\" -D__D2XL_VER__=\"$(D2XL_VER)\" -Wno-builtin-macro-redefined
+CFLAGS	=	$(ARCH) -iquote ./include -iquote cios-lib -fomit-frame-pointer -Os -Wall -D__TIME__=\"$(BUILD_TIME)\" -D__DATE__=\"$(BUILD_DATE)\" -D__D2XL_VER__=\"$(D2XL_VER)\" -Wno-builtin-macro-redefined
 LDFLAGS	=	$(ARCH) -nostartfiles -Wl,-T,link.ld,-Map,$(TARGET).map -Wl,--gc-sections -Wl,-static
 
 # Libraries
@@ -39,17 +39,17 @@ LIBS	=	cios-lib/cios-lib.a
 TARGET	=	MLOAD
 
 # Objects
-OBJS	=	debug.o		\
-		detect.o	\
-		elf.o		\
-		gecko.o		\
-		gpio.o		\
-		main.o		\
-		patches.o	\
-		start.o		\
-		swi.o		\
-		swi_asm.o	\
-		tid.o
+OBJS	=	source/debug.o		\
+		source/detect.o	\
+		source/elf.o		\
+		source/gecko.o		\
+		source/gpio.o		\
+		source/main.o		\
+		source/patches.o	\
+		source/start.o		\
+		source/swi.o		\
+		source/swi_asm.o	\
+		source/tid.o
 
 # Dependency files
 DEPS	= $(OBJS:.o=.d)
